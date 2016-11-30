@@ -23,6 +23,36 @@
         {% endif %}
         <br />
     {% endfor %}
+    <h3>Private Channels</h3>
+    {% for p_channel in private_channels %}
+        {% if p_channel == name %}
+        <a href="{{ url_for('private_channel_name', name=p_channel) }}">
+            <span style="background-color: #ab9ba9">
+                #{{ p_channel }}
+            </span>
+        </a>
+        {% else %}
+        <a href="{{ url_for('private_channel_name', name=p_channel) }}">
+            #{{ p_channel }}
+        </a>
+        {% endif %}
+        <br />
+    {% endfor %}
+    <h3>Direct Messages</h3>
+    {% for dm in dms %}
+        {% if dm == name %}
+        <a href="{{ url_for('dm_name', name=dm) }}">
+            <span style="background-color: #ab9ba9">
+                #{{ dm }}
+            </span>
+        </a>
+        {% else %}
+        <a href="{{ url_for('dm_name', name=dm) }}">
+            #{{ dm }}
+        </a>
+        {% endif %}
+        <br />
+    {% endfor %}
 </div>
 <div class="messages" id="fluid">
     {% for message in messages %}

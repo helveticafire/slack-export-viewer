@@ -34,10 +34,14 @@ def configure_app(app, archive, debug):
     path = extract_archive(archive)
     user_data = get_users(path)
     channel_data = get_channels(path)
-    channels = compile_channels(path, user_data, channel_data)
+    channels = compile_channels(path + "/channel", user_data, channel_data)
+    private_channels = compile_channels(path + "/private_channels", user_data, channel_data)
+    dms = compile_channels(path + "/direct_message", user_data, channel_data)
 
     top = flask._app_ctx_stack
     top.channels = channels
+    top.private_channels = private_channels
+    top.dms = dms
 
 
 @click.command()
